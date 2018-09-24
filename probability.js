@@ -94,15 +94,12 @@
         var 回数文字列 = Math.floor(回数文字列);
 
         if (当たり確率文字列 <= 0 || 回数文字列 < 0) {
-            console.log('馬鹿野郎!!');
             return;
         };
         if (当たり確率文字列.length === 0 || 希望確率.value < 0) {
-            console.log('馬鹿野郎!!');
             return;
         };
         if (当たり確率文字列 > 100 || 希望確率.value >= 100) {
-            console.log('馬鹿野郎!!');
             return;
         };
 
