@@ -1,0 +1,120 @@
+body {
+    background-color: lightblue; 
+    width:370px;
+    margin-right: auto;
+    margin-left : auto;
+}
+.face{
+    color: black;
+}
+h1{
+    border-left: solid 5px red;
+}
+h1{
+    border-bottom: solid 2px green;
+}
+a.cp_btn {
+    position: relative;
+    top:30px;
+    left:10px;
+    display: block;
+    width: 80px;
+    padding: 0.15em;
+    text-align: center;
+    border: 3px solid #9C27B0;
+    text-decoration: none;
+    outline: none;
+    transition: all .4s;
+    color: #9C27B0;
+    }
+    a.cp_btn::before,
+    a.cp_btn::after {
+    position: absolute;
+    top: -3px;
+    right: -3px;
+    bottom: -3px;
+    left: -3px;
+    z-index: 2;
+    content: '';
+    transition: all .4s;
+    }
+    a.cp_btn::before {
+    border-top: 3px solid #FF5722;
+    border-bottom: 3px solid #FF5722;
+    transform: scale(0, 1);
+    }
+    a.cp_btn::after {
+    border-right: 3px solid #FF5722;
+    border-left: 3px solid #FF5722;
+    transform: scale(1, 0);
+    }
+    a.cp_btn:hover {
+    color: #FF5722;
+    }
+    a.cp_btn:hover::after,
+    a.cp_btn:hover::before {
+    transform: scale(1);
+    }
+
+    .clear{
+        position: relative;
+        top:-5px;
+        left:150px; 
+        display: inline-block;
+        padding: 0.22em 0.8em;
+        text-decoration: none;
+        color: #1b9dee;
+        border: solid 2px #1b9dee;
+        background: white;
+        border-radius: 3px;
+        transition: .4s;
+    }
+     .clear:hover {
+        background: #1b9dee;
+        color: white;
+    }
+.ten{
+    margin-right: auto;
+    margin-left : 10px;
+    height: 20px;
+    background-color:pink;
+}
+.hundred{
+    margin-right: auto;
+    margin-left : 10px;
+    height: 20px;
+    background-color:yellow;
+}
+.ninety{
+    margin-right: auto;
+    margin-left : 10px;
+    height: 20px;
+    background-color:rgb(233, 136, 136);
+}
+.ninetynine{
+    margin-right: auto;
+    margin-left : 10px;
+    height: 20px;
+    background-color:greenyellow;
+}
+.oneper{
+    margin-right: auto;
+    margin-left : 10px;
+    height: 20px;
+    background-color:gold;
+}
+.tenper{
+    margin-right: auto;
+    margin-left : 10px;
+    height: 20px;
+    background-color:silver;
+}
+h2{
+    border-bottom: dashed 2px blue;
+}
+.text{
+    height: 20px;
+    border-radius: 11px
+} 
+   
+   
