@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>当たり確率計算</title>
+    <link rel="stylesheet" href="probability.css">
+</head>
+
+<body>
+    <h1 class="face">当たり確率計算</h1>
+    <h2>当たり確率</h2><br>
+    <form>
+        <input type="text" id="当たり確率input" size="23" maxlength="4" placeholder="半角数字" class="text" autocomplete="off">(%)
+        <input type=button value="クリア" onClick="this.form.当たり確率input.value = ''">
+    </form>
+    <button id="oneper" class="oneper">+1</button>
+    <button id="tenper" class="tenper">+10</button><br>
+    <h2>希望確率</h2><br>
+    <form>
+        <input type="text" id="希望確率input" size="23" maxlength="5" placeholder="半角数字" class="text" autocomplete="off">(％)
+        <input type=button value="クリア" onClick="this.form.希望確率input.value = ''">
+    </form>
+    <button id ="ninety" class="ninety">90</button>
+    <button id ="ninetynine" class="ninetynine">99</button><br>
+    <h2>回数</h2><br>
+    <form>
+        <input type="text" id="回数input" size="23" maxlength="5" placeholder="半角数字" class="text" autocomplete="off">(回)
+        <input type=button value="クリア" onClick="this.form.回数input.value = ''">
+    </form>
+    <button id="ten" class="ten">+10</button>
+    <button id="hundred" class="hundred">+100</button>
+    <a href="#" class="cp_btn" id="assessment">計算する</a>
+    <a href="#" class="clear" id="clear">全クリア</a><br><br><br><br>
+    <div id="result-area"></div>
+    <div id="result-area2"></div>
+    <div id="result-area3"></div>
+    <script src="probability.js"></script>
+</body>
+
+</html>
