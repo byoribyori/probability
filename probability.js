@@ -92,20 +92,26 @@
         var 当たり確率文字列 = 当たり確率.value;
         var 回数文字列 = 回数.value;
         var 回数文字列 = Math.floor(回数文字列);
-
-        if (当たり確率文字列 <= 0 || 回数文字列 < 0) {
-            return;
-        };
-        if (当たり確率文字列.length === 0 || 希望確率.value < 0) {
-            return;
-        };
-        if (当たり確率文字列 > 100 || 希望確率.value >= 100) {
-            return;
-        };
-
         removeAllChildren(resultDivided);
         removeAllChildren(resultDivided2);
         removeAllChildren(resultDivided3);
+
+        if (当たり確率文字列 <= 0 || 回数文字列 < 0) {
+            paragragh.innerText = '計算できません'
+            resultDivided.appendChild(paragragh);
+            return;
+        };
+        if (当たり確率文字列.length === 0 || 希望確率.value < 0) {
+            paragragh.innerText = '計算できません'
+            resultDivided.appendChild(paragragh);
+            return;
+        };
+        if (当たり確率文字列 > 100 || 希望確率.value >= 100) {
+            paragragh.innerText = '計算できません'
+            resultDivided.appendChild(paragragh);
+            return;
+        };
+        
         const paragragh = document.createElement('p');
         const paragragh2 = document.createElement('p');
         const paragragh3 = document.createElement('p');
