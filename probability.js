@@ -95,6 +95,9 @@
         removeAllChildren(resultDivided);
         removeAllChildren(resultDivided2);
         removeAllChildren(resultDivided3);
+        const paragragh = document.createElement('p');
+        const paragragh2 = document.createElement('p');
+        const paragragh3 = document.createElement('p');
 
         if (当たり確率文字列 <= 0 || 回数文字列 < 0) {
             paragragh.innerText = '計算できません';
@@ -112,10 +115,6 @@
             resultDivided.appendChild(paragragh);
             return;
         };
-        
-        const paragragh = document.createElement('p');
-        const paragragh2 = document.createElement('p');
-        const paragragh3 = document.createElement('p');
 
         console.clear();
         console.log(当たり確率.value + ' 以下の数が出ればあたり');
