@@ -97,17 +97,18 @@
         removeAllChildren(resultDivided3);
 
         if (当たり確率文字列 <= 0 || 回数文字列 < 0) {
-            paragragh.innerText = '計算できません'
+            paragragh.innerText = '計算できません';
             resultDivided.appendChild(paragragh);
+            console.log('計算できません');
             return;
         };
         if (当たり確率文字列.length === 0 || 希望確率.value < 0) {
-            paragragh.innerText = '計算できません'
+            paragragh.innerText = '計算できません';
             resultDivided.appendChild(paragragh);
             return;
         };
         if (当たり確率文字列 > 100 || 希望確率.value >= 100) {
-            paragragh.innerText = '計算できません'
+            paragragh.innerText = '計算できません';
             resultDivided.appendChild(paragragh);
             return;
         };
