@@ -19,7 +19,7 @@
         if (e.keyCode === 32) {
          clearButton.onclick();
         }
-    };
+    }
 
     function removeAllChildren(element) {
         while (element.firstChild) {
@@ -41,37 +41,53 @@
         var inputs = document.getElementsByTagName("input");
         if (inputs[0].value.length === 0) {
             inputs[0].value = "0";
+        } else {
+            if (isNaN(inputs[0].value) === true) {
+                inputs[0].value = "0";
+            }
         }
-        var 足す数 = parseFloat(inputs[0].value);
-        var 足す数 = 足す数 += 1;
-        inputs[0].value = 足す数;
+        var input = parseFloat(inputs[0].value);
+        var input = input += 1;
+        inputs[0].value = input;
     }
     tenperButton.onclick = () => {
         var inputs = document.getElementsByTagName("input");
         if (inputs[0].value.length === 0) {
             inputs[0].value = "0";
+        } else {
+            if (isNaN(inputs[0].value) === true) {
+                inputs[0].value = "0";
+            }
         }
-        var 足す数 = parseFloat(inputs[0].value);
-        var 足す数 = 足す数 += 10;
-        inputs[0].value = 足す数;
+        var input = parseFloat(inputs[0].value);
+        var input = input += 10;
+        inputs[0].value = input;
     }
     tenButton.onclick = () => {
         var inputs = document.getElementsByTagName("input");
         if (inputs[4].value.length === 0) {
             inputs[4].value = "0";
+        } else {
+            if (isNaN(inputs[4].value) === true) {
+                inputs[4].value = "0";
+            }
         }
-        var 足す数 = parseFloat(inputs[4].value);
-        var 足す数 = 足す数 += 10;
-        inputs[4].value = 足す数;
+        var input = parseFloat(inputs[4].value);
+        var input = input += 10;
+        inputs[4].value = input;
     }
     hundredButton.onclick = () => {
         var inputs = document.getElementsByTagName("input");
         if (inputs[4].value.length === 0) {
             inputs[4].value = "0";
+        } else {
+            if (isNaN(inputs[4].value) === true) {
+                inputs[4].value = "0";
+            }
         }
-        var 足す数 = parseFloat(inputs[4].value);
-        var 足す数 = 足す数 += 100;
-        inputs[4].value = 足す数;
+        var input = parseFloat(inputs[4].value);
+        var input = input += 100;
+        inputs[4].value = input;
     }
     ninetyButton.onclick = () => {
         var inputs = document.getElementsByTagName("input");
@@ -103,31 +119,26 @@
         if(isNaN(当たり確率.value) === true　|| isNaN(回数.value) === true){
             paragragh.innerText = '計算できません';
             resultDivided.appendChild(paragragh);
-            console.log('計算できません');
             return;
         }
         if(isNaN(希望確率.value) === true){
             paragragh.innerText = '計算できません';
             resultDivided.appendChild(paragragh);
-            console.log('計算できません');
             return;
         }
     　　if (当たり確率文字列 <= 0 || 回数文字列 < 0) {
             paragragh.innerText = '計算できません';
             resultDivided.appendChild(paragragh);
-            console.log('計算できません');
             return;
         };
         if (当たり確率文字列.length === 0 || 希望確率.value < 0) {
             paragragh.innerText = '計算できません';
             resultDivided.appendChild(paragragh);
-            console.log('計算できません');
             return;
         };
         if (当たり確率文字列 > 100 || 希望確率.value >= 100) {
             paragragh.innerText = '計算できません';
             resultDivided.appendChild(paragragh);
-            console.log('計算できません');
             return;
         };
 
@@ -138,6 +149,7 @@
         var ガチャ終わり = false;
         var ii = 0;
         var end = false;
+        var yaku = false;
         var 当たり回数 = 0;
         const 確率 = 当たり確率.value * 100;
         var random = 100000;
@@ -153,6 +165,20 @@
             if (回数文字列 === ii) {
                 var 最終結果 = 結果 * 100;
                 var 最終結果 = 100 - 最終結果;
+
+
+                var 最終結果2 = (最終結果 + '');
+                if (最終結果 < 10) {
+                    if (最終結果2.charAt(5) === '') {
+                    } else {
+                        var yaku = true;
+                    }
+                } else {
+                    if (最終結果2.charAt(6) === '') {
+                    } else {
+                        var yaku = true;
+                    }
+                }
                 var 最終結果 = Math.round(最終結果 * 1000) / 1000;
                 if (確率 < 10000) {
                     if (最終結果 === 100) {
@@ -204,7 +230,13 @@
                 } 
 
                 if (ガチャ回数 > 回数.value) {
-                    paragragh.innerText = 回数文字列 + '回で' + 当たり確率.value + '%の当たりが1回でも当たる確率は\n' + 最終結果 + '%です';
+                    if(回数.value > 0){
+                        if(yaku === true){
+                        paragragh.innerText = 回数文字列 + '回で' + 当たり確率.value + '%の当たりが1回でも当たる確率は\n約' + 最終結果 + '%です';
+                        }else{
+                        paragragh.innerText = 回数文字列 + '回で' + 当たり確率.value + '%の当たりが1回でも当たる確率は\n' + 最終結果 + '%です';
+                        }
+                    }
                     paragragh3.innerText = 'シミュレーションでは' + ガチャ回数 + '回目で当たりました';
                     if (希望確率.value > 0) {
                         paragragh2.innerText = '1回でも当たる確率が' + 希望確率.value + '%になるには' + (希望確率まで + 1) + '回必要です';
@@ -217,8 +249,14 @@
             }
 
             if (ガチャ回数 === 回数文字列 && 当たり回数 > 0) {
-                paragragh.innerText = 回数文字列 + '回で' + 当たり確率.value + '%の当たりが1回でも当たる確率は\n' + 最終結果 + '%です';
-                paragragh3.innerText = 'シミュレーションでは' + ガチャ回数 + '回中' + 当たり回数 + '回当たりました';
+                if(回数.value > 0){
+                    if(yaku === true){
+                    paragragh.innerText = 回数文字列 + '回で' + 当たり確率.value + '%の当たりが1回でも当たる確率は\n約' + 最終結果 + '%です';
+                    }else{
+                    paragragh.innerText = 回数文字列 + '回で' + 当たり確率.value + '%の当たりが1回でも当たる確率は\n' + 最終結果 + '%です';
+                    }
+                }
+                paragragh3.innerText = 'シミュレーションでは' + ガチャ回数 + '回中' + 当たり回数 + '回当たりました\n(' + 当たり回数 + '/' + ガチャ回数 + '=' + ((当たり回数 / ガチャ回数) * 100)　+ '%)';
                 if (希望確率.value > 0) {
                     paragragh2.innerText = '1回でも当たる確率が' + 希望確率.value + '%になるには' + (希望確率まで + 1) + '回必要です';
                 }
