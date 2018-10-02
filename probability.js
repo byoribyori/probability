@@ -146,7 +146,7 @@
         var end = false;
         var yaku = false;
         var 当たり回数 = 0;
-        const 確率 = 当たり確率.value * 100;
+        const 確率 = 当たり確率.value * 10 * 10;
         var random = 100000;
         var 当たり確率文字列 = 100 - 当たり確率文字列;
         var 当たり確率文字列 = 当たり確率文字列 / 100;
@@ -158,7 +158,7 @@
 
         for (var iii = 0; ガチャ終わり === false; iii++) {
             if (回数文字列 === ii) {
-                var 最終結果 = 結果 * 100;
+                var 最終結果 = 結果 * 10 * 10;
                 var 最終結果 = 100 - 最終結果;
 
 
@@ -180,10 +180,13 @@
                         var 最終結果 = 最終結果 - 0.01;
                     }
                 }
+                if(回数文字列 === 1){
+                   var yaku = false;
+                }
             }
             var ii = ii + 1;
             var 結果 = 1 * 結果 * 当たり確率文字列;
-            if (希望終わり === false && 希望確率.value < 100 - (結果 * 100)) {
+            if (希望終わり === false && 希望確率.value < 100 - (結果 * 10 * 10)) {
                 var 希望確率まで = iii;
                 var 希望終わり = true;
             }
