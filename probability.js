@@ -1,5 +1,6 @@
 (function () {
     'use strict';
+    document.cookie='name=tyorityori;';
     const 当たり確率 = document.getElementById('当たり確率input');
     const 回数 = document.getElementById('回数input');
     const 希望確率 = document.getElementById('希望確率input');
