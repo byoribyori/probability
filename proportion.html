@@ -14,7 +14,7 @@
         合計 <span id="total">0</span>
       </th>
       <th style="width:100px;">
-        <button onclick="plus()">欄を追加</button>
+        <button class="plus" onclick="plus()">欄を追加</button>
       </th>
     </tr>
     <tr>
@@ -35,6 +35,8 @@
     </tr>
     <span id="tab"></span>
   </table>
+  <br>
+  <button onclick="reset()" class="reset">リセット</button>
   <script>
     function update() {
       var value = [];
@@ -46,8 +48,8 @@
       }
       document.getElementById('total').innerText = total;
       for (var ii = 0; ii < value.length; ii++) {
-        var result = Math.round(value[ii] / total * 10000) / 100
-        document.getElementById(`d${ii + 1}`).innerText = isNaN(result) ? '' : result + '%';
+        var result = Math.round(value[ii] / total * 10000) / 100;
+        document.getElementById(`d${ii + 1}`).innerText = isNaN(result) || !inputs[ii].value ? '' : result + '%';
       }
     }
 
@@ -61,6 +63,15 @@
       tr.appendChild(th1);
       tr.appendChild(th2);
       document.getElementById('table').appendChild(tr);
+    }
+
+    function reset() {
+      var inputs = document.getElementsByTagName('input');
+      for (var iii = 0; iii < inputs.length; iii++) {
+        inputs[iii].value = '';
+        document.getElementById(`d${iii + 1}`).innerText = '';
+        document.getElementById('total').innerText = 0;
+      }
     }
   </script>
 </body>
