@@ -1,0 +1,21 @@
+body{
+  background-color: lightblue;
+}
+table{
+  border: 1px;
+  background-color: #555555;
+  margin-right: auto;
+  margin-left : auto;
+}
+th{
+  background-color: white;
+}
+input{
+  height: 30px;
+  font-size: 20px;
+  width: 170px;
+}
+button{
+  background-color: aqua;
+  width: 100px;
+}
