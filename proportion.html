@@ -11,10 +11,11 @@
   <table id="table">
     <tr>
       <th>
-        合計 <span id="total">0</span>
+        合計 <span id="total" style="font-style:oblique">0</span>
       </th>
       <th style="width:100px;">
-        <button class="plus" onclick="plus()">欄を追加</button>
+        <button class="plus" onclick="plus()">追加</button>
+        <button class="minus" onclick="minus()">削除</button>
       </th>
     </tr>
     <tr>
@@ -35,8 +36,7 @@
     </tr>
     <span id="tab"></span>
   </table>
-  <br>
-  <button onclick="reset()" class="reset">リセット</button>
+  <p><button onclick="reset()" class="reset">リセット</button></p>
   <script>
     function update() {
       var value = [];
@@ -63,6 +63,15 @@
       tr.appendChild(th1);
       tr.appendChild(th2);
       document.getElementById('table').appendChild(tr);
+    }
+
+    function minus() {
+      var trm = document.getElementsByTagName('tr');
+      console.log(trm,trm.length)
+      if (trm.length > 3) {
+        trm[trm.length - 1].remove();
+        update();
+      }
     }
 
     function reset() {
