@@ -15,7 +15,19 @@ input{
   font-size: 20px;
   width: 170px;
 }
-button{
+.plus{
   background-color: aqua;
-  width: 100px;
+  width: 47px;
+  font-size: 12px;
+}
+.minus{
+  background-color: yellow;
+  width: 47px;
+  font-size: 12px;
+}
+.reset{
+  background-color: rgb(241, 105, 105);
+  display: block;
+  margin-right: auto;
+  margin-left : auto;
 }
