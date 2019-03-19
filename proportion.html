@@ -15,6 +15,8 @@
       </th>
       <th style="width:100px;">
         <button class="plus" onclick="plus()">追加</button>
+      </th>
+      <th style="width:100px;">
         <button class="minus" onclick="minus()">削除</button>
       </th>
     </tr>
@@ -23,7 +25,10 @@
         <input type="tel" onkeyup="update()">
       </th>
       <th>
-        <div id=d1></div>
+        <div id="d1"></div>
+      </th>
+      <th>
+        <div id="g1" class="g" style="width:0%;"></div>
       </th>
     </tr>
     <tr>
@@ -31,7 +36,10 @@
         <input type="tel" onkeyup="update()">
       </th>
       <th>
-        <div id=d2></div>
+        <div id="d2"></div>
+      </th>
+      <th>
+        <div id="g2" class="g" style="width:0%;"></div>
       </th>
     </tr>
     <span id="tab"></span>
@@ -39,49 +47,68 @@
   <p><button onclick="reset()" class="reset">リセット</button></p>
   <script>
     function update() {
-      var value = [];
-      var total = 0;
-      var inputs = document.getElementsByTagName('input');
-      for (var i = 0; i < inputs.length; i++) {
-        value.push(Number(inputs[i].value));
-        total += value[i];
+        var value = [];
+        var total = 0;
+        var inputs = document.getElementsByTagName('input');
+        for (var i = 0; i < inputs.length; i++) {
+          value.push(Number(inputs[i].value));
+          total += value[i];
+        }
+        document.getElementById('total').innerText = total;
+        for (var ii = 0; ii < value.length; ii++) {
+          var result = Math.round(value[ii] / total * 10000) / 100;
+          document.getElementById(`d${ii + 1}`).innerText = isNaN(result) || !inputs[ii].value ? '' : result + '%';
+          var va = value.toString();
+          va = va.split(',');
+          for(var iiiii = 0; iiiii < va.length; iiiii++) {
+            va[iiiii]=Number(va[iiiii]);
+          }
+          va.sort(function (a, b) {
+            if (a < b) return -1;
+            if (a > b) return 1;
+            return 0;
+          });
+          var map = new Map();
+          for (var iiii = 0; iiii < value.length; iiii++) {
+            map.set(va[iiii], value.length - iiii);
+          }
+          var g = document.getElementById(`g${ii + 1}`);
+          g.style = isNaN(result) || !inputs[ii].value ? '' : `width: ${result}%`;
+          g.innerText = result ? map.get(value[ii]) : '';
+        }
       }
-      document.getElementById('total').innerText = total;
-      for (var ii = 0; ii < value.length; ii++) {
-        var result = Math.round(value[ii] / total * 10000) / 100;
-        document.getElementById(`d${ii + 1}`).innerText = isNaN(result) || !inputs[ii].value ? '' : result + '%';
-      }
-    }
 
-    function plus() {
-      var th1 = document.createElement('th');
-      th1.innerHTML = '<input type="tel" onkeyup="update()">';
-      var th2 = document.createElement('th');
-      var number = document.getElementsByTagName('input').length + 1;
-      th2.innerHTML = `<div id=d${number}></div>`
-      var tr = document.createElement('tr');
-      tr.appendChild(th1);
-      tr.appendChild(th2);
-      document.getElementById('table').appendChild(tr);
-    }
-
-    function minus() {
-      var trm = document.getElementsByTagName('tr');
-      console.log(trm,trm.length)
-      if (trm.length > 3) {
-        trm[trm.length - 1].remove();
-        update();
+      function plus() {
+        var th1 = document.createElement('th');
+        th1.innerHTML = '<input type="tel" onkeyup="update()">';
+        var th2 = document.createElement('th');
+        var number = document.getElementsByTagName('input').length + 1;
+        th2.innerHTML = `<div id=d${number}></div>`
+        var th3 = document.createElement('th');
+        th3.innerHTML = `<div id="g${number}" class="g" style="width:0%;"></div>`;
+        var tr = document.createElement('tr');
+        tr.appendChild(th1);
+        tr.appendChild(th2);
+        tr.appendChild(th3);
+        document.getElementById('table').appendChild(tr);
       }
-    }
 
-    function reset() {
-      var inputs = document.getElementsByTagName('input');
-      for (var iii = 0; iii < inputs.length; iii++) {
-        inputs[iii].value = '';
-        document.getElementById(`d${iii + 1}`).innerText = '';
-        document.getElementById('total').innerText = 0;
+      function minus() {
+        var trm = document.getElementsByTagName('tr');
+        if (trm.length > 3) {
+          trm[trm.length - 1].remove();
+          update();
+        }
       }
-    }
+
+      function reset() {
+        var inputs = document.getElementsByTagName('input');
+        for (var iii = 0; iii < inputs.length; iii++) {
+          inputs[iii].value = '';
+          document.getElementById(`d${iii + 1}`).innerText = '';
+          document.getElementById('total').innerText = 0;
+        }
+      }
   </script>
 </body>
 </html>
