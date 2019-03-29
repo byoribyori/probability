@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <style>
+    body {
+      background-color: gainsboro;
+      width: 300px;
+      margin: auto;
+      font-family: 'sans-serif';
+      font-size: 1.6em;
+    }
+
+    h1 {
+      font-size: 1.5em;
+    }
+
+    .number {
+      margin: 30px 0 30px 0;
+    }
+
+    #number {
+      width: 2.3em;
+      font-size: 1em;
+      border-radius: 10px;
+      border: solid 1px burlywood;
+    }
+
+    #number:focus {
+      border: solid 2px blue;
+    }
+
+    .button>input {
+      font-size: 0.7em;
+      border: none;
+      border-radius: 5px;
+    }
+
+    #button1 {
+      margin-right: 30px;
+      background-color: rgb(253, 193, 193);
+    }
+
+    #button2 {
+      background-color: rgb(193, 193, 253);
+    }
+
+    .t {
+      box-shadow: 0px 0px 15px 2px black;
+    }
+
+    #cal {
+      width: 120px;
+      margin: auto;
+      font-size: 0.8em;
+      border: solid 2.4px #54bfe2;
+      background-color: lightgoldenrodyellow;
+    }
+
+    #cal:hover {
+      border: dashed 2.4px #54bfe2;
+    }
+
+    #area{
+      font-size: 1.2em;
+      margin-top: 1em;
+    }
+
+    span {
+      font-style: italic;
+    }
+
+    span.probability{
+      border-bottom: solid red 2px;
+    }
+  </style>
+  <title>色違い確率</title>
+</head>
+
+<body>
+  <h1>国際孵化<br>色違い誕生確率</h1>
+  <div class="button">
+    ひかるおまもり<br>
+    <input id="button1" class="t" type="button" value="あり">
+    <input id="button2" type="button" value="なし">
+  </div>
+  <div class="number">
+    個数:<input type="tel" id="number" maxlength="4">
+  </div>
+  <input type="button" id="cal" value="計算">
+  <div id="area"></div>
+
+  <script>
+    'use strict';
+    var hit = 800 / 4096 / 100;
+
+    function d(e) {
+      return document.getElementById(e);
+    }
+
+    d('button1').onclick = () => {
+      d('button1').className = "t";
+      d('button2').className = "";
+      hit = 800 / 4096 / 100;
+    }
+
+    d('button2').onclick = () => {
+      d('button1').className = "";
+      d('button2').className = "t";
+      hit = 600 / 4096 / 100;
+    }
+
+    d('cal').onclick = () => {
+
+      var number = Number(d('number').value);
+      if (!number || isNaN(number)) return;
+
+      var probability = 1;
+      for (let i = 0; i < number; i++) {
+        probability = probability * (1 - hit);
+      }
+
+      probability = 100 - probability * 100;
+      probability = Math.round(probability * 1000) / 1000;
+
+      d('area').innerHTML = `<span class="number">${number}</span> 個で色違いが<br>生まれる確率は<br><span class="probability">${probability}%</span> です`;
+    }
+
+
+  </script>
+</body>
+
+</html>
