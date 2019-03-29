@@ -127,7 +127,12 @@
       probability = Math.round(probability * 1000) / 1000;
 
       d('area').innerHTML = `<span class="number">${number}</span> 個で色違いが<br>生まれる確率は<br><span class="probability">${probability}%</span> です`;
+    
     }
+    
+    document.onkeydown = (e) => {
+        if (e.keyCode === 13) d('cal').onclick();
+      }
 
 
   </script>
